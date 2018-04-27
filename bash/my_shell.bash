@@ -1,6 +1,18 @@
 #!/bin/bash
 
 # Git Prompt
+__my_git_prompt() {
+  # inside_git_repo="$(git rev-parse --is-inside-work-tree 2>/dev/null)"
+  if [ `git rev-parse --is-inside-work-tree 2>/dev/null` ]; then
+    local repo_name=$(basename `git rev-parse --show-toplevel`)
+    local git_ps1=$(__git_ps1 %s)
+    #echo "[%{${fg[cyan]}%}$repo_name %{${fg[red]}%}$git_ps1%{${reset_color}%}]"
+    echo -e -n "[\033[36m$repo_name \033[31m$git_ps1\033[0m]"
+  else
+    echo ""
+  fi
+}
+
 __source_git_helper() {
   . $HOME/.git_helper/git-completion.bash
   . $HOME/.git_helper/git-prompt.sh
@@ -8,7 +20,7 @@ __source_git_helper() {
   GIT_PS1_SHOWUPSTREAM=auto
   GIT_PS1_SHOWUNTRACKEDFILES=1
   # no colored
-  export PS1='\[\033[32m\]\u@\h\[\033[0m\] \[\033[33m\]\W\[\033[0m\] $(__git_ps1 "[\[\033[31m\]%s\[\033[0m\]]")\$ '
+  # export PS1='\[\033[32m\]\u@\h\[\033[0m\] \[\033[33m\]\W\[\033[0m\] $(__git_ps1 "[\[\033[31m\]%s\[\033[0m\]]")\$ '
 
   # colored
   #GIT_PS1_SHOWCOLORHINTS=true
@@ -24,6 +36,8 @@ else
   curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash > $HOME/.git_helper/git-completion.bash
   __source_git_helper
 fi
+export PS1='\[\033[32m\]\u@\h\[\033[0m\] \[\033[33m\]\W\[\033[0m\] $(__my_git_prompt)\$ '
+# export PS1='\[\033[32m\]\u \[\033[33m\]\w\[\033[0m\] $(__my_git_prompt)\$ '
 
 # Aliases
 case "${OSTYPE}" in
