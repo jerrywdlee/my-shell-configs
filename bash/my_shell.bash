@@ -13,7 +13,8 @@ __my_git_prompt() {
   fi
 }
 
-GIT_HELPR_PATH="$PWD/git_helper"
+GIT_HELPR_PATH=`dirname $(dirname $BASH_SOURCE)`/git_helper
+
 __source_git_helper() {
   if [ -f $GIT_HELPR_PATH/git-completion.bash ]; then
     . $GIT_HELPR_PATH/git-completion.bash
