@@ -45,7 +45,7 @@ darwin*)
   alias ls="ls -G"
   alias ll="ls -lhG"
   alias la="ls -lhaG"
-  alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
+  # alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
   ;;
 linux*)
   alias ls='ls --color'
@@ -54,9 +54,23 @@ linux*)
   ;;
 esac
 
+# For loading applications
 if [ -f $HOME/.ngrok/ngrok ]; then
   alias ngrok="$HOME/.ngrok/ngrok"
 fi
+
+# gi command
+# Usage:
+# cd MYAPP && gi node rails
+# API See https://www.gitignore.io/docs#-install-command-line-git
+gi() {
+  params=`echo $@ | tr ' ' ','`
+  # add most used os
+  params="windows,macos,linux,"$params
+  curl -L -s "https://www.gitignore.io/api/"$params > $PWD"/.gitignore"
+  echo ".gitignore File Created At:"
+  echo $PWD"/.gitignore"
+}
 
 # envs
 export PYENV_ROOT="$HOME/.pyenv"
