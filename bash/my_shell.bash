@@ -43,14 +43,14 @@ export PS1='\[\033[32m\]\u@\h\[\033[0m\] \[\033[33m\]\W\[\033[0m\] $(__my_git_pr
 case "${OSTYPE}" in
 darwin*)
   alias ls="ls -G"
-  alias ll="ls -lG"
-  alias la="ls -laG"
+  alias ll="ls -lhG"
+  alias la="ls -lhaG"
   alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
   ;;
 linux*)
   alias ls='ls --color'
-  alias ll='ls -l --color'
-  alias la='ls -la --color'
+  alias ll='ls -lh --color'
+  alias la='ls -lha --color'
   ;;
 esac
 
