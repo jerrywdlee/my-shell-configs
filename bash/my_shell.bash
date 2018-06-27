@@ -19,9 +19,15 @@ __my_git_prompt_repo_name() {
   return $exit
 }
 
+GIT_HELPR_PATH=`dirname $(dirname $BASH_SOURCE)`/git_helper
+
 __source_git_helper() {
-  . $HOME/.git_helper/git-completion.bash
-  . $HOME/.git_helper/git-prompt.sh
+  if [ -f $GIT_HELPR_PATH/git-completion.bash ]; then
+    . $GIT_HELPR_PATH/git-completion.bash
+  fi
+  if [ -f $GIT_HELPR_PATH/git-prompt.sh ]; then
+    . $GIT_HELPR_PATH/git-prompt.sh
+  fi
   GIT_PS1_SHOWDIRTYSTATE=1
   GIT_PS1_SHOWUPSTREAM=auto
   GIT_PS1_SHOWUNTRACKEDFILES=1
@@ -34,12 +40,12 @@ __source_git_helper() {
 }
 
 # show git status
-if [ -f $HOME/.git_helper/git-prompt.sh ]; then
-  __source_git_helper
-else
-  mkdir $HOME/.git_helper
-  curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > $HOME/.git_helper/git-prompt.sh
-  curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash > $HOME/.git_helper/git-completion.bash
+__source_git_helper
+if ! command -v __git_ps1 1>/dev/null 2>&1; then
+  curl -L -sS https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > $GIT_HELPR_PATH/git-prompt.sh
+  curl -L -sS https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash > $GIT_HELPR_PATH/git-completion.bash
+  echo -e "Git Completion Scripts Downloaded!"
+  echo -e "See $GIT_HELPR_PATH"
   __source_git_helper
 fi
 # export PS1='\[\033[32m\]\u@\h\[\033[0m\] \[\033[33m\]\W\[\033[0m\] $(__my_git_prompt)\$ '
@@ -50,20 +56,34 @@ export PS1='\[\033[32m\]\u@\h\[\033[0m\] \[\033[33m\]\W\[\033[0m\] $(__git_ps1 "
 case "${OSTYPE}" in
 darwin*)
   alias ls="ls -G"
-  alias ll="ls -lG"
-  alias la="ls -laG"
-  alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
+  alias ll="ls -lhG"
+  alias la="ls -lhaG"
+  # alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
   ;;
 linux*)
   alias ls='ls --color'
-  alias ll='ls -l --color'
-  alias la='ls -la --color'
+  alias ll='ls -lh --color'
+  alias la='ls -lha --color'
   ;;
 esac
 
+# For loading applications
 if [ -f $HOME/.ngrok/ngrok ]; then
   alias ngrok="$HOME/.ngrok/ngrok"
 fi
+
+# gi command
+# Usage:
+# cd MYAPP && gi node rails
+# API See https://www.gitignore.io/docs#-install-command-line-git
+gi() {
+  params=`echo $@ | tr ' ' ','`
+  # add most used os
+  params="windows,macos,linux,"$params
+  curl -L -s "https://www.gitignore.io/api/"$params > $PWD"/.gitignore"
+  echo ".gitignore File Created At:"
+  echo $PWD"/.gitignore"
+}
 
 # envs
 export PYENV_ROOT="$HOME/.pyenv"
