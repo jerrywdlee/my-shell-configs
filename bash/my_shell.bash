@@ -78,11 +78,18 @@ fi
 # API See https://www.gitignore.io/docs#-install-command-line-git
 gi() {
   params=`echo $@ | tr ' ' ','`
-  # add most used os
-  params="windows,macos,linux,"$params
-  curl -L -s "https://www.gitignore.io/api/"$params > $PWD"/.gitignore"
-  echo ".gitignore File Created At:"
-  echo $PWD"/.gitignore"
+  FILE_PATH=$PWD"/.gitignore"
+  if [ -f $FILE_PATH ]; then
+    echo -e "\n\n###### Updated At `date +%Y-%m-%d` ######" >> $FILE_PATH
+    curl -L -s "https://www.gitignore.io/api/"$params >> $FILE_PATH
+    echo $PWD"/.gitignore updated"
+  else
+    # add most used os
+    params="windows,macos,linux,"$params
+    curl -L -s "https://www.gitignore.io/api/"$params > $FILE_PATH
+    echo ".gitignore File Created At:"
+    echo $PWD"/.gitignore"
+  fi
 }
 
 # envs
