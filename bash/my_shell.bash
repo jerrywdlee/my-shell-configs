@@ -76,10 +76,14 @@ fi
 # Usage:
 # cd MYAPP && gi node rails
 # API See https://www.gitignore.io/docs#-install-command-line-git
-gi() {
+__gi() {
   params=`echo $@ | tr ' ' ','`
   FILE_PATH=$PWD"/.gitignore"
   if [ -f $FILE_PATH ]; then
+    if [ $params="" ]; then
+      echo "Params needed"
+      return 1
+    fi
     echo -e "\n\n###### Updated At `date +%Y-%m-%d` ######" >> $FILE_PATH
     curl -L -s "https://www.gitignore.io/api/"$params >> $FILE_PATH
     echo $PWD"/.gitignore updated"
@@ -91,6 +95,7 @@ gi() {
     echo $PWD"/.gitignore"
   fi
 }
+alias gi=__gi
 
 # envs
 export PYENV_ROOT="$HOME/.pyenv"
