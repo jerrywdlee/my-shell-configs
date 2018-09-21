@@ -80,7 +80,7 @@ __gi() {
   params=`echo $@ | tr ' ' ','`
   FILE_PATH=$PWD"/.gitignore"
   if [ -f $FILE_PATH ]; then
-    if [ $params="" ]; then
+    if [ $params = "" ]; then
       echo "Params needed"
       return 1
     fi
