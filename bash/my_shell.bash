@@ -52,6 +52,11 @@ fi
 export PS1='\[\033[32m\]\u@\h\[\033[0m\] \[\033[33m\]\W\[\033[0m\] $(__git_ps1 "[\[\033[36m\]$(__my_git_prompt_repo_name) \[\033[31m\]%s\[\033[0m\]]")\$ '
 # export PS1='\[\033[32m\]\u \[\033[33m\]\w\[\033[0m\] $(__my_git_prompt)\$ '
 
+# Raspberry Pi Default
+# export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w \$\[\033[00m\] "
+# Raspberry Pi Like PS1
+# export PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] \[\033[01;34m\]$(__git_ps1 "[\[\033[36m\]$(__my_git_prompt_repo_name) \[\033[31m\]%s\[\033[01;34m\]]")\$\[\033[00m\] '
+
 # Aliases
 case "${OSTYPE}" in
 darwin*)
