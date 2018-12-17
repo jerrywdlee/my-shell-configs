@@ -10,9 +10,9 @@ __source_git_helper() {
   if [ -f $GIT_HELPR_PATH/git-prompt.sh ]; then
     . $GIT_HELPR_PATH/git-prompt.sh
   fi
-  GIT_PS1_SHOWDIRTYSTATE=1
-  GIT_PS1_SHOWUPSTREAM=auto
-  GIT_PS1_SHOWUNTRACKEDFILES=1
+  # GIT_PS1_SHOWDIRTYSTATE=1
+  # GIT_PS1_SHOWUPSTREAM=auto
+  # GIT_PS1_SHOWUNTRACKEDFILES=1
   # no colored
   # export PS1='\[\033[32m\]\u@\h\[\033[0m\] \[\033[33m\]\W\[\033[0m\] $(__git_ps1 "[\[\033[31m\]%s\[\033[0m\]]")\$ '
 
