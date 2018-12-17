@@ -15,6 +15,11 @@ echo -e "\nsource \$HOME/.my-shell-configs/bash/my_shell.bash\n" >> ~/.bash_prof
 ```
 On 1st run, it will download [dependency scripts](https://github.com/git/git/tree/master/contrib/completion) from github.
 
+##### Bash on Android(Termux)
+```sh
+echo -e "\nsource \$HOME/.my-shell-configs/termux/my_shell.bash\n" >> ~/.bash_profile && . ~/.bash_profile
+```
+
 ##### MinGW on Windows
 ```sh
 echo -e "\nsource \$HOME/.my-shell-configs/MinGW/my_shell.bash\n" >> ~/.bash_profile && source ~/.bash_profile
