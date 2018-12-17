@@ -15,6 +15,6 @@ export PS1='\[\033[32m\]\u@\h\[\033[0m\] \[\033[33m\]\W\[\033[0m\] $(__git_ps1 "
 
 # For loading applications
 if [ -f $HOME/.ngrok2/ngrok ]; then
-  PATH="$HOME/.ngrok2/ngrok:$PATH"
+  PATH="$HOME/.ngrok2:$PATH"
   # alias ngrok="$HOME/.ngrok2/ngrok"
 fi
