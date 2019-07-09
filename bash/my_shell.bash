@@ -124,12 +124,13 @@ fi
 export GOENV_ROOT="$HOME/.goenv"
 if command -v goenv 1>/dev/null 2>&1; then
   eval "$(goenv init -)"
+  export PATH="$GOENV_ROOT/bin:$GOPATH/bin:$GOROOT/bin:$PATH"
 fi
-export GOPATH="$HOME/.go"
-if [[ ! -d $GOPATH ]]; then
-  mkdir $GOPATH
-fi
-if [[ ! -d "$GOPATH/bin" ]]; then
-  mkdir "$GOPATH/bin"
-fi
-export PATH="$GOENV_ROOT/bin:$GOPATH/bin:$PATH"
+# export GOPATH="$HOME/.go"
+# if [[ ! -d $GOPATH ]]; then
+#   mkdir $GOPATH
+# fi
+# if [[ ! -d "$GOPATH/bin" ]]; then
+#   mkdir "$GOPATH/bin"
+# fi
+# export PATH="$GOENV_ROOT/bin:$GOPATH/bin:$PATH"
