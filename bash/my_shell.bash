@@ -122,9 +122,10 @@ if command -v nodenv 1>/dev/null 2>&1; then
 fi
 
 export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
 if command -v goenv 1>/dev/null 2>&1; then
   eval "$(goenv init -)"
-  export PATH="$GOENV_ROOT/bin:$GOPATH/bin:$GOROOT/bin:$PATH"
+  export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 fi
 # export GOPATH="$HOME/.go"
 # if [[ ! -d $GOPATH ]]; then
