@@ -83,19 +83,12 @@ setopt prompt_subst
 # vcsの表示    
 # zstyle ':vcs_info:*' enable git svn hg bzr
 zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' stagedstr "+"
-zstyle ':vcs_info:*' unstagedstr "*"
-zstyle ':vcs_info:*' formats '(%b%c%u)'    
-zstyle ':vcs_info:*' actionformats '(%b(%a)%c%u)'    
-
-# プロンプト表示直前にvcs_info呼び出し    
-precmd () {
-    psvar=()
-    LANG=en_US.UTF-8 vcs_info
-    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-}    
-
+# git の時のみに有効
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "+"
+zstyle ':vcs_info:git:*' unstagedstr "*"
+zstyle ':vcs_info:*' formats '%b%c%u%m'    
+zstyle ':vcs_info:*' actionformats '%b(%a)%c%u%m'
 
 # TODO: Tabtab対策
 # https://github.com/mklabs/tabtab/issues/40

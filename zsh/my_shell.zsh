@@ -5,8 +5,8 @@ MY_SHELL_ROOT=`dirname ${MY_SHELL_ZSH_ROOT}`
 ANTIGEN="$MY_SHELL_ZSH_ROOT/antigen.zsh"
 
 if [ ! -f "$ANTIGEN" ]; then
-    print -P "%B%F{green}Installing...%f%b"
-    sh $MY_SHELL_ZSH_ROOT/install.zsh
+	print -P "%B%F{green}Installing...%f%b"
+	sh $MY_SHELL_ZSH_ROOT/install.zsh
 fi
 
 ## ヒストリの設定
@@ -40,18 +40,22 @@ fi
 . $MY_SHELL_ZSH_ROOT/color_opts.zsh
 . $MY_SHELL_ZSH_ROOT/key_bind.zsh
 
+# PS1設定
+# プロンプト表示直前にvcs_info呼び出し
+precmd () {
+	psvar=()
+	LANG=en_US.UTF-8 vcs_info
+	[[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_ "
 
+	# Repo name
+	if [ `git rev-parse --is-inside-work-tree 2>/dev/null` ]; then
+		local repo_name=$(basename `git rev-parse --show-toplevel`)
+		psvar[2]="$repo_name "
+	fi
+}
 
+# PROMPT="%{${fg[green]}%}%n%{${reset_color}%}@%F{blue}localhost%f:%1(v|%F{red}%1v%f|) $ "
+# PROMPT="%F{green}%n@%m%f:%1(v|%F{red}%1v%f|) $ "
 
-
-# # Disable correction
-# unsetopt correct_all
-# unsetopt correct
-# DISABLE_CORRECTION="true" 
-# 
-# # completion detail
-# zstyle ':completion:*:complete:-command-:*:*' ignored-patterns '*.pdf|*.exe|*.dll'
-# zstyle ':completion:*:*sh:*:' tag-order files
-#add-zsh-hook precmd _update_vcs_info_msg
-PROMPT="%{${fg[green]}%}%n%{${reset_color}%}@%F{blue}localhost%f:%1(v|%F{red}%1v%f|) $ "
-RPROMPT='[%F{green}%d%f]'
+PROMPT="%F{green}%n@%m%f %F{yellow}%~%f %# "
+RPROMPT="[%1(v|%F{cyan}%2v%f|)%1(v|%F{red}%1v%f|)%F{magenta}%D%f]"
