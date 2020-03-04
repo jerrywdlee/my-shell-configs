@@ -15,6 +15,13 @@ echo -e "\nsource \$HOME/.my-shell-configs/bash/my_shell.bash\n" >> ~/.bash_prof
 ```
 On 1st run, it will download [dependency scripts](https://github.com/git/git/tree/master/contrib/completion) from github.
 
+##### Zsh on Mac or Linux
+```sh
+echo -e "\n. \$HOME/.my-shell-configs/zsh/my_shell.bash\n" >> ~/.zshrc && . ~/.zshrc
+# if need nodenv or rbenv etc.
+echo -e "\n. \$HOME/.my-shell-configs/lib/env_options.sh\n" >> ~/.zshrc && . ~/.zshrc
+```
+
 ##### Bash on Android(Termux)
 ```sh
 echo -e "\nsource \$HOME/.my-shell-configs/termux/my_shell.bash\n" >> ~/.bash_profile && . ~/.bash_profile
