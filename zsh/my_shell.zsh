@@ -2,6 +2,7 @@
 
 MY_SHELL_ZSH_ROOT=`dirname $0`
 MY_SHELL_ROOT=`dirname ${MY_SHELL_ZSH_ROOT}`
+GIT_HELPR_PATH=`${MY_SHELL_ROOT}/git_helper`
 ANTIGEN="$MY_SHELL_ZSH_ROOT/antigen.zsh"
 
 if [ ! -f "$ANTIGEN" ]; then
@@ -40,6 +41,9 @@ fi
 . $MY_SHELL_ZSH_ROOT/color_opts.zsh
 . $MY_SHELL_ZSH_ROOT/key_bind.zsh
 
+# TODO: remove if https://github.com/woefe/git-prompt.zsh/pull/17 merged
+. $GIT_HELPR_PATH/git-prompt.zsh
+# ZSH_THEME_GIT_PROMPT_UPSTREAM_TYPE="none"
 # PS1設定
 # プロンプト表示直前にvcs_info呼び出し
 precmd () {
