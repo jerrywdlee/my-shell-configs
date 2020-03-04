@@ -44,18 +44,27 @@ fi
 # プロンプト表示直前にvcs_info呼び出し
 precmd () {
 	psvar=()
-	LANG=en_US.UTF-8 vcs_info
-	[[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_ "
+	# LANG=en_US.UTF-8 vcs_info
+	# [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_ "
 
 	# Repo name
 	if [ `git rev-parse --is-inside-work-tree 2>/dev/null` ]; then
 		local repo_name=$(basename `git rev-parse --show-toplevel`)
-		psvar[2]="$repo_name "
+        # psvar[1]="$repo_name "
+		RPROMPT="[%F{cyan}$repo_name%f $(_zsh_git_prompt_git_status) %F{blue}%D %T%f]"
+	else
+		RPROMPT="[%F{blue}%D %T%f]"
 	fi
 }
 
 # PROMPT="%{${fg[green]}%}%n%{${reset_color}%}@%F{blue}localhost%f:%1(v|%F{red}%1v%f|) $ "
 # PROMPT="%F{green}%n@%m%f:%1(v|%F{red}%1v%f|) $ "
+# RPROMPT="[%1(v|%F{cyan}%2v%f|)%1(v|%F{red}%1v%f|)%F{magenta}%D%f]"
+
+ZSH_THEME_GIT_PROMPT_PREFIX="%B%F{yellow}⎇%f "
+# ZSH_THEME_GIT_PROMPT_PREFIX="⌥ "
+ZSH_THEME_GIT_PROMPT_SUFFIX=""
 
 PROMPT="%F{green}%n@%m%f %F{yellow}%~%f %# "
-RPROMPT="[%1(v|%F{cyan}%2v%f|)%1(v|%F{red}%1v%f|)%F{magenta}%D%f]"
+# RPROMPT="[%1(v|%F{cyan}%2v%f|)$(_zsh_git_prompt_git_status)%F{blue}%D %T%f]"
+# RPROMPT="[%1(v|%F{cyan}%1v%f|)$_ZSH_GIT_PROMPT_STATUS_OUTPUT%F{blue}%D %T%f]"

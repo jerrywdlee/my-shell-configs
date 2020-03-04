@@ -43,7 +43,6 @@ zstyle ':prezto:load' pmodule \
 # Initialize prezto
 antigen use prezto
 
-
 # default bundles
 # antigen bundle rupa/z z.sh
 # antigen bundle Vifon/deer
@@ -51,6 +50,8 @@ antigen bundle zdharma/fast-syntax-highlighting
 # antigen bundle zsh-users/zsh-autosuggestions
 # antigen bundle willghatch/zsh-cdr
 # antigen bundle zsh-users/zaw
+# antigen bundle olivierverdier/zsh-git-prompt
+antigen bundle woefe/git-prompt.zsh
 
 antigen apply
 
@@ -75,20 +76,21 @@ setopt HIST_VERIFY # Don't execute immediately upon history expansion.
 
 ## PROMPT
 # vcs_infoロード    
-autoload -Uz vcs_info    
+# autoload -Uz vcs_info
 
 # PROMPT変数内で変数参照する    
-setopt prompt_subst    
+# setopt prompt_subst    
 
-# vcsの表示    
-# zstyle ':vcs_info:*' enable git svn hg bzr
-zstyle ':vcs_info:*' enable git
-# git の時のみに有効
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "+"
-zstyle ':vcs_info:git:*' unstagedstr "*"
-zstyle ':vcs_info:*' formats '%b%c%u%m'    
-zstyle ':vcs_info:*' actionformats '%b(%a)%c%u%m'
+# vcsの表示
+# # zstyle ':vcs_info:*' enable git svn hg bzr
+# zstyle ':vcs_info:*' enable git
+# # git の時のみに有効
+# zstyle ':vcs_info:git:*' check-for-changes true
+# zstyle ':vcs_info:git:*' stagedstr "+"
+# zstyle ':vcs_info:git:*' unstagedstr "*"
+# zstyle ':vcs_info:*' formats '%b%c%u%m'
+# zstyle ':vcs_info:*' actionformats '%b(%a)%c%u%m'
+# woefe/git-prompt.zshを使うことで、廃止
 
 # TODO: Tabtab対策
 # https://github.com/mklabs/tabtab/issues/40
