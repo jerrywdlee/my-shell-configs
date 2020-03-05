@@ -41,9 +41,17 @@ fi
 . $MY_SHELL_ZSH_ROOT/color_opts.zsh
 . $MY_SHELL_ZSH_ROOT/key_bind.zsh
 
+# For light theme like vscode
+if [[ $CONSOLE_THEME = "light" ]]; then
+  # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=250,underline,fg_bold
+  ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=251
+else
+  ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=8
+fi
+
 # TODO: remove if https://github.com/woefe/git-prompt.zsh/pull/17 merged
 . $GIT_HELPR_PATH/git-prompt.zsh
-# ZSH_THEME_GIT_PROMPT_UPSTREAM_TYPE="none"
+ZSH_THEME_GIT_PROMPT_UPSTREAM_TYPE="symbol"
 # PS1設定
 # プロンプト表示直前にvcs_info呼び出し
 precmd () {
