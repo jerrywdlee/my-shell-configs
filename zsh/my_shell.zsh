@@ -41,7 +41,8 @@ fi
 . $MY_SHELL_ZSH_ROOT/color_opts.zsh
 . $MY_SHELL_ZSH_ROOT/key_bind.zsh
 
-# For light theme like vscode
+# For light theme
+# In VScode Must set "terminal.integrated.env.osx": { "CONSOLE_THEME": "light", } first
 if [[ $CONSOLE_THEME = "light" ]]; then
   # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=250,underline,fg_bold
   ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=251
@@ -49,9 +50,12 @@ else
   ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=8
 fi
 
-# TODO: remove if https://github.com/woefe/git-prompt.zsh/pull/17 merged
+# TODO: remove if woefe/git-prompt.zsh Released
 . $GIT_HELPR_PATH/git-prompt.zsh
-ZSH_THEME_GIT_PROMPT_UPSTREAM_TYPE="symbol"
+# . $HOME/git/git-prompt.zsh/git-prompt.zsh
+ZSH_GIT_PROMPT_SHOW_UPSTREAM="symbol"
+ZSH_THEME_GIT_PROMPT_UPSTREAM_SYMBOL="%{$fg_bold[yellow]%}↯"
+
 # PS1設定
 # プロンプト表示直前にvcs_info呼び出し
 precmd () {
