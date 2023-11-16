@@ -50,9 +50,6 @@ else
   ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=8
 fi
 
-# TODO: remove if woefe/git-prompt.zsh Released
-. $GIT_HELPR_PATH/git-prompt.zsh
-# . $HOME/git/git-prompt.zsh/git-prompt.zsh
 ZSH_GIT_PROMPT_SHOW_UPSTREAM="symbol"
 ZSH_THEME_GIT_PROMPT_UPSTREAM_SYMBOL="%{$fg_bold[yellow]%}↯"
 
