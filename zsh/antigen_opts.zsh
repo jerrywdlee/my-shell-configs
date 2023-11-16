@@ -51,8 +51,7 @@ antigen bundle zdharma/fast-syntax-highlighting
 # antigen bundle willghatch/zsh-cdr
 # antigen bundle zsh-users/zaw
 # antigen bundle olivierverdier/zsh-git-prompt
-# TODO: uncomment if woefe/git-prompt.zsh Released
-# antigen bundle woefe/git-prompt.zsh
+antigen bundle woefe/git-prompt.zsh
 
 antigen apply
 
