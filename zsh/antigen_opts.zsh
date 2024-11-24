@@ -46,7 +46,7 @@ antigen use prezto
 # default bundles
 # antigen bundle rupa/z z.sh
 # antigen bundle Vifon/deer
-antigen bundle zdharma/fast-syntax-highlighting
+antigen bundle zdharma-continuum/fast-syntax-highlighting
 # antigen bundle zsh-users/zsh-autosuggestions
 # antigen bundle willghatch/zsh-cdr
 # antigen bundle zsh-users/zaw

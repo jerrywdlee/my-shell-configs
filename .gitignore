@@ -80,4 +80,5 @@ git_helper/*
 
 # antigen
 zsh/antigen.zsh
+zsh/antigen_opts.zsh.zwc
 zsh/my_shell.zsh.zwc
