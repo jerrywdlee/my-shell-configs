@@ -17,9 +17,15 @@ On 1st run, it will download [dependency scripts](https://github.com/git/git/tre
 
 ##### Zsh on Mac or Linux
 ```sh
-echo -e "\n. \$HOME/.my-shell-configs/zsh/my_shell.bash\n" >> ~/.zshrc && . ~/.zshrc
-# if need nodenv or rbenv etc.
+echo -e "\n. \$HOME/.my-shell-configs/zsh/my_shell.zsh\n" >> ~/.zshrc && . ~/.zshrc
+# [Optional] if need nodenv or rbenv etc.
 echo -e "\n. \$HOME/.my-shell-configs/lib/env_options.sh\n" >> ~/.zshrc && . ~/.zshrc
+```
+
+###### Install for Dev
+```sh
+cd ANY_PATH/my-shell-configs/
+echo -e "\n. `pwd`/zsh/my_shell.zsh\n" >> ~/.zshrc && . ~/.zshrc
 ```
 
 ##### Bash on Android(Termux)
@@ -45,4 +51,4 @@ export PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\
 
 ### [LICENSE](https://github.com/jerrywdlee/my-shell-configs/blob/master/LICENSE)
 GNU General Public License v3.0  
-Copyright (C) 2018  Jerry Lee
+Copyright (C) 2018~2025  Jerry Lee
